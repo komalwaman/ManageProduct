@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729190319) do
+ActiveRecord::Schema.define(version: 20170730160037) do
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.float "price", limit: 24, null: false
     t.string "color"
-    t.integer "status", null: false
+    t.integer "product_status", null: false
     t.date "inward_date", null: false
-    t.string "type", null: false
+    t.string "product_type", null: false
     t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

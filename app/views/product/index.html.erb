@@ -1,2 +1,66 @@
-<h1>Product#index</h1>
-<p>Find me in app/views/product/index.html.erb</p>
+<h1>Product</h1>
+<span><%= link_to 'New Pen', product_new_path(:product_type => "Pen") %></span>
+<span><%= link_to 'New Notebook', product_new_path(:product_type => "Notebook") %></span>
+<% if @products.length == 0 %>
+  <p>Currently there are no products. Please start by creating few products.</p>
+<% else %>
+  <p>Following is the list of all product</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Type
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+          Color
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Inward Date
+        </th>
+        <th>
+          Status
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |p| %>
+        <tr class="active">
+          <td>
+            <%= p.product_type %>
+          </td>
+          <td>
+            <%= p.name %>
+          </td>
+          <td>
+            <%= p.price %>
+          </td>
+          <td>
+            <%= p.color!= nil && p.color != "" ? p.color : "--" %>
+          </td>
+          <td>
+            <%= p.description %>
+          </td>
+          <td>
+            <%= p.inward_date %>
+          </td>
+          <td>
+            <%= p.product_status == 0 ? "Disabled" : "Enabled" %>
+          </td>
+          <td>
+            <%= link_to 'Edit', product_edit_path(p) %>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<%end%>

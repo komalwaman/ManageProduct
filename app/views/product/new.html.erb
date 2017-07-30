@@ -1,2 +1,69 @@
-<h1>Product#new</h1>
-<p>Find me in app/views/product/new.html.erb</p>
+<div> Add New Product </div>
+<%= form_for :product, url: product_create_path do |p| %>
+ 
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@product.errors.count, "error") %> prohibited
+        this product from being saved:
+      </h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= p.hidden_field :product_type, :value => @product.product_type %>
+  <p>
+    <%= p.label :name %><br>
+    <%= p.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= p.label :description %><br>
+    <%= p.text_area :description %>
+  </p>
+
+  <p>
+    <%= p.label :price %><br>
+    <%= p.text_field :price %>
+  </p>
+
+  <% if @product.product_type == 'Pen' %>
+    <p>
+      <%= p.label :color %><br>
+      <%= p.text_area :color %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= p.label :product_status %><br>
+    <%= p.label :product_status, "Enabled", :value => 1  %>
+    <%= p.radio_button :product_status, 1 %><br>
+    <%= p.label :product_status, "Disabled", :value => 0 %>
+    <%= p.radio_button :product_status, 0 %>
+  </p>
+
+  <p>
+    <%= p.label :inward_date %><br>
+    <%= p.text_field :inward_date, "data-provide" => 'datepicker' %>
+  </p>
+ 
+  <p>
+    <%= p.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Back', product_index_path %>
+
+<script type="text/javascript">
+  $.fn.datepicker.defaults.format = "dd-mm-yyyy";
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      autoclose:true,
+      format: "dd-mm-yyyy"
+    });
+  });
+</script>
