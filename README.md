@@ -1,24 +1,22 @@
 # README
+A simple application where you can add product, edit existing one and can manage status. No login needed
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version - 2.4.0
 
-Things you may want to cover:
+get the latest code on machine and run bundle install.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
+* Database creation -
+Mysql database is used on backend. Specify the username and password in config/database.yml
+rake db:create ---This will create the DB
+rake db:setup  ---This will make setup easier
 
 * Database initialization
+make sure everything is upto date by checking migrations.
+rake db:migrate ---This will run the migration if you have missed.
 
-* How to run the test suite
+* Start server with command
+rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+you can access the application on browser with url http://localhost:3000/
 
-* Deployment instructions
-
-* ...
+Change the port no if you have specified different port to run application.
