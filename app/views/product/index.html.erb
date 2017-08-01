@@ -8,57 +8,27 @@
   <table class="table">
     <thead>
       <tr>
-        <th>
-          Type
-        </th>
-        <th>
-          Name
-        </th>
-        <th>
-          Price
-        </th>
-        <th>
-          Color
-        </th>
-        <th>
-          Description
-        </th>
-        <th>
-          Inward Date
-        </th>
-        <th>
-          Status
-        </th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Color</th>
+        <th>Description</th>
+        <th>Inward Date</th>
+        <th>Status</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @products.each do |p| %>
         <tr class="active">
-          <td>
-            <%= p.product_type %>
-          </td>
-          <td>
-            <%= p.name %>
-          </td>
-          <td>
-            <%= p.price %>
-          </td>
-          <td>
-            <%= p.color!= nil && p.color != "" ? p.color : "--" %>
-          </td>
-          <td>
-            <%= p.description %>
-          </td>
-          <td>
-            <%= p.inward_date %>
-          </td>
-          <td>
-            <%= p.product_status == 0 ? "Disabled" : "Enabled" %>
-          </td>
-          <td>
-            <%= link_to 'Edit', product_edit_path(p) %>
-          </td>
+          <td><%= p.product_type %></td>
+          <td><%= p.name %></td>
+          <td><%= p.price %></td>
+          <td><%= p.colour %></td>
+          <td><%= p.description %></td>
+          <td><%= p.inward_date %></td>
+          <td><%= p.is_available %></td>
+          <td><%= link_to 'Edit', product_edit_path(p) %></td>
         </tr>
       <%end%>
     </tbody>

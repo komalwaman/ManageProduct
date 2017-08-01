@@ -1,34 +1,38 @@
 class ProductController < ApplicationController
   def index
-    @products = Product.all
+    @products = ProductDecorator.decorate_collection(Product.all)
   end
 
   def new
     type = params[:product_type]
-    @product = Product.new(:product_type => type)
+    product = Product.new(:product_type => type)
+    @product = ProductDecorator.new(product)
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.product_status = 1 if @product.product_status && @product.product_status != 0
+    product = Product.new(product_params)
+    product.product_status = 1 if product.product_status && product.product_status != 0
  
-    if @product.save
+    if product.save
       redirect_to product_index_path
     else
+      @product = ProductDecorator.new(product)
       render 'new'
     end
   end
 
   def edit
-    @product = Product.find(params[:id])
+    product = Product.find(params[:id])
+    @product = ProductDecorator.new(product)
   end
 
   def update
-    @product = Product.find(params[:id])
+    product = Product.find(params[:id])
  
-    if @product.update(product_params)
+    if product.update(product_params)
       redirect_to product_index_path
     else
+      @product = ProductDecorator.new(product)
       render 'edit'
     end
   end
