@@ -7,4 +7,8 @@ class Product < ApplicationRecord
   def is_inward_date_valid
     errors.add(:inward_date, 'must be a valid date') if ((Date.parse(:inward_date) rescue ArgumentError) == ArgumentError)
   end
+  
+  def price_sum(type)
+    Product.where(:product_type => type).sum(&:price)
+  end
 end
